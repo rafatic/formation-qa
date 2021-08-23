@@ -20,4 +20,10 @@ export class Person {
     this.weight = person.weight;
     this.birthdate = person.birthdate;
   }
+  
+  // constructor(lastname: string, firstname: string, birthdate: Date) {
+  //   this.lastname = lastname;
+  //   this.firstname = firstname;
+  //   this.birthdate = birthdate;
+  // }
 }

@@ -22,6 +22,7 @@ import { PersonEditComponent } from './person-edit/person-edit.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { PersonListComponent } from './person-list/person-list.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     HeaderComponent,
     PersonEditComponent,
-    HomeComponent
+    HomeComponent,
+    PersonListComponent
   ],
   bootstrap: [AppComponent],
   providers: []

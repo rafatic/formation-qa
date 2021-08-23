@@ -34,12 +34,10 @@ export class PersonEditComponent implements OnInit {
   get height() { return this.personForm.get('height')!; }
 
   onSubmit() {
-
     const p: Person = new Person(<Person>this.personForm.value);
     this.personService.addPerson(p)
        .subscribe((): void => {
          console.log(`Saved person`);
-         console.log(p);
      });
   }
 
