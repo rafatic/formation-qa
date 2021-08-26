@@ -1,1 +1,65 @@
-<p>person-list works!</p>
+<h1>Liste des personnes</h1>
+
+<table mat-table [dataSource]="personList" class="mat-elevation-z8">
+
+    <!-- Id -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    </ng-container>
+
+    <!-- lastname -->
+    <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let element">{{element.lastname}}</td>
+    </ng-container>
+
+    <!-- firstname -->
+    <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef>Prénom</th>
+        <td mat-cell *matCellDef="let element">{{element.firsname}}</td>
+    </ng-container>
+
+    <!-- Minor -->
+    <ng-container matColumnDef="minor">
+        <th mat-header-cell *matHeaderCellDef>Mineur</th>
+        <td mat-cell *matCellDef="let element">{{element.minor}}</td>
+    </ng-container>
+
+    <!-- Address1 -->
+    <ng-container matColumnDef="address1">
+        <th mat-header-cell *matHeaderCellDef>Addresse (ligne 1)</th>
+        <td mat-cell *matCellDef="let element">{{element.address1}}</td>
+    </ng-container>
+
+    <!-- Address2 -->
+    <ng-container matColumnDef="address2">
+        <th mat-header-cell *matHeaderCellDef>Addresse (ligne 2)</th>
+        <td mat-cell *matCellDef="let element">{{element.address2}}</td>
+    </ng-container>
+
+    <!-- Height -->
+    <ng-container matColumnDef="height">
+        <th mat-header-cell *matHeaderCellDef>Taille</th>
+        <td mat-cell *matCellDef="let element">{{element.height}}<div ng-if="!!(element.height) && element.height === 0">cm</div></td>
+    </ng-container>
+
+    <!-- Weight -->
+    <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef>Poids</th>
+        <td mat-cell *matCellDef="let element">{{element.weight}}<div ng-if="element.weight">kg</div></td>
+    </ng-container>
+
+    <!-- Birthdate -->
+    <ng-container matColumnDef="birthdate">
+        <th mat-header-cell *matHeaderCellDef>Date de naissance</th>
+        <td mat-cell *matCellDef="let element">{{element.birthdate | date}}</td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      (click)="selectPerson(row)"
+      *matRowDef="let row; columns: displayedColumns;"
+  ></tr>
+</table>

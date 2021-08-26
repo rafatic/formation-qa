@@ -24,7 +24,7 @@ public class Person {
     @Column(length = 10)
     private String address1;
     @Column(length = 100)
-    private String addresss2;
+    private String address2;
 
     private Double weight;
 

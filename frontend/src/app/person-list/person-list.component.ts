@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Person } from '../person';
+import { PersonService } from '../person.service';
 
 @Component({
   selector: 'app-person-list',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonListComponent implements OnInit {
 
-  constructor() { }
+  personList: Array<Person>;
+  displayedColumns: string[] = ['id', 'lastname', 'firstname', 'minor', 'address1', 'address2', 'height', 'weight', 'birthdate'];
 
-  ngOnInit(): void {
+  constructor(
+    private personService: PersonService
+  ) 
+  {
+    this.personList = new Array<Person>();
   }
 
+  ngOnInit(): void {
+    this.personService.getPersons().subscribe(result => {
+      this.personList=result;
+    });
+  }
+
+  selectPerson(selectedPerson: Person): void {
+    console.log(`selected person n°${selectedPerson.id}`);
+  }
 }

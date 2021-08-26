@@ -27,6 +27,12 @@ public class PersonService {
     }
 
     public Person insertPerson(Person person) {
+        if(person.getAddress1().length() > 10) {
+            person.setAddress1(person.getAddress1().substring(0, 10));
+        }
+        if(person.getAddress2().length() > 100) {
+            person.setAddress2(person.getAddress2().substring(0, 100));
+        }
         return personRepository.save(person);
     }
 }

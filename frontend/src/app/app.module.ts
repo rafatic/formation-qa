@@ -14,7 +14,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatNativeDateModule} from '@angular/material/core';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from './header/header.component';
@@ -43,7 +44,9 @@ import { PersonListComponent } from './person-list/person-list.component';
     MatRadioModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatCheckboxModule
   ],
   declarations: [
     AppComponent,

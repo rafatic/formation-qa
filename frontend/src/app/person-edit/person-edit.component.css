@@ -5,7 +5,7 @@
 }
 
 #misplacedSubmitButton {
-  position:absolute;
-  left:600px;
-  top: 500px;
+  position:relative;
+  left:500px;
+  top: 00px;
 }
