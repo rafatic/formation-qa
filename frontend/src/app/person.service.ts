@@ -45,8 +45,7 @@ export class PersonService {
   }
 
   addPerson(person: Person): Observable<Person> {
-    console.log(typeof(person));
-    return this.http.post<Person>(this.baseUrl, person as Person, this.httpOptions).pipe(
+    return this.http.post<Person>(this.baseUrl, person, this.httpOptions).pipe(
       tap((newPerson: Person) => this.log(`added person w/ id=${newPerson.id}`)),
       catchError(this.handleError<Person>('addPerson'))
     );

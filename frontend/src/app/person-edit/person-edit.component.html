@@ -1,7 +1,10 @@
 <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
   <mat-card class="form-container form">
     <mat-card-title>
-      <h1>Créer une personne</h1>
+
+    <h1 *ngIf="this.editMode">Modifier une personne</h1>
+    <h1 *ngIf="!this.editMode">Créer une personne</h1>
+
     </mat-card-title>
     <mat-grid-list cols="2" rowHeight="100px">
       <mat-grid-tile>

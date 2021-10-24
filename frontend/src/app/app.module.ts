@@ -14,6 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
 
 
 import { AppComponent } from "./app.component";
@@ -22,6 +23,7 @@ import { PersonEditComponent } from './person-edit/person-edit.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { PersonListComponent } from './person-list/person-list.component';
 
 @NgModule({
   imports: [
@@ -41,6 +43,7 @@ import { HomeComponent } from './home/home.component';
     MatSelectModule,
     MatRadioModule,
     MatNativeDateModule,
+    MatTableModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
@@ -48,7 +51,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     HeaderComponent,
     PersonEditComponent,
-    HomeComponent
+    HomeComponent,
+    PersonListComponent
   ],
   bootstrap: [AppComponent],
   providers: []

@@ -4,10 +4,7 @@ import fr.pif.formationtests.model.Person;
 import fr.pif.formationtests.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,19 +20,27 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/persons")
+    @RequestMapping(path = "/persons", produces = "application/json", method= RequestMethod.GET)
     public List<Person> findAllPersons() {
         return personService.findAllPersons();
     }
 
-    @GetMapping("/persons/{id}")
-    public Person findAllPersons(Long id) {
+
+    @RequestMapping(path = "/persons/{id}", produces="application/json", method= RequestMethod.GET)
+    @ResponseBody
+    public Person findAllPersons(@PathVariable("id") Long id) {
         return personService.getPersonById(id);
     }
 
-    @PostMapping("/persons")
-    public Person insertPerson(Person person) {
+    @RequestMapping(path = "/persons", consumes = "application/json", method= RequestMethod.POST)
+    public Person insertPerson(@RequestBody Person person) {
         log.info("Saving person : " + person);
         return personService.insertPerson(person);
+    }
+
+    @RequestMapping(path = "/persons", consumes = "application/json", method= RequestMethod.PUT)
+    public Person updatePerson(@RequestBody Person person) {
+        log.info("Updating person : " + person);
+        return personService.updatePerson(person);
     }
 }

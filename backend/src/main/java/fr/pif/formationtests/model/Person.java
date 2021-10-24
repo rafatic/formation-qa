@@ -1,5 +1,6 @@
 package fr.pif.formationtests.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Person {
 
     @Id
@@ -24,7 +26,7 @@ public class Person {
     @Column(length = 10)
     private String address1;
     @Column(length = 100)
-    private String addresss2;
+    private String address2;
 
     private Double weight;
 
@@ -32,7 +34,4 @@ public class Person {
 
     @Column(nullable = false)
     private LocalDate birthdate;
-
-
-
 }
