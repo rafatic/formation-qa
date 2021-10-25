@@ -1,52 +1,54 @@
-<h1>Liste des personne enregistrées</h1>
+<h1 *ngIf="this.version===1">Liste des personne enregistrées</h1>
+<h1 *ngIf="this.version===2">Liste des personnes enregistrées</h1>
 <table mat-table [dataSource]="personList" class="mat-elevation-z8 person-table">
 
   <!-- Id Column -->
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Id. </th>
+    <th mat-header-cell *matHeaderCellDef>ID</th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
   <!-- Last Name Column -->
   <ng-container matColumnDef="lastname">
-    <th mat-header-cell *matHeaderCellDef> Last name </th>
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
     <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
   </ng-container>
 
   <!-- First name Column -->
   <ng-container matColumnDef="firstname">
-    <th mat-header-cell *matHeaderCellDef> First name </th>
+    <th mat-header-cell *matHeaderCellDef>Prénom</th>
     <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
   </ng-container>
 
   <!-- Minor Column -->
   <ng-container matColumnDef="minor">
-    <th mat-header-cell *matHeaderCellDef> Minor </th>
-    <td mat-cell *matCellDef="let element"> {{element.minor}} </td>
+    <th mat-header-cell *matHeaderCellDef>Mineur</th>
+    <div *ngIf="this.version === 1"><td mat-cell *matCellDef="let element"> {{element.minor}} </td></div>
+    <div *ngIf="this.version === 2"><td mat-cell *matCellDef="let element"> {{element.minor===false ? 'Majeur' : 'Mineur'}} </td></div>
   </ng-container>
 
   <!-- address1 Column -->
   <ng-container matColumnDef="address1">
-    <th mat-header-cell *matHeaderCellDef> Address (line 1) </th>
+    <th mat-header-cell *matHeaderCellDef>Adresse (ligne 1)</th>
     <td mat-cell *matCellDef="let element"> {{element.address1}} </td>
   </ng-container>
 
   <!-- address2 Column -->
   <ng-container matColumnDef="address2">
-    <th mat-header-cell *matHeaderCellDef> Address (line 2) </th>
+    <th mat-header-cell *matHeaderCellDef>Adresse (ligne 2)</th>
     <td mat-cell *matCellDef="let element"> {{element.address2}} </td>
   </ng-container>
 
   <!-- height Column -->
   <ng-container matColumnDef="height">
-    <th mat-header-cell *matHeaderCellDef>Height</th>
-    <td mat-cell *matCellDef="let element"> {{element.height}} </td>
+    <th mat-header-cell *matHeaderCellDef>Taille</th>
+    <td mat-cell *matCellDef="let element"> {{element.height}} cm</td>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <th mat-header-cell *matHeaderCellDef>Poids</th>
+    <td mat-cell *matCellDef="let element"> {{element.weight}} kg</td>
   </ng-container>
 
   <!-- birthdate Column -->

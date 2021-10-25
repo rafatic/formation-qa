@@ -24,9 +24,10 @@ export class PersonListComponent implements OnInit {
   ngOnInit(): void {
     this.stateService.version.subscribe(newVersion => {
       this.version = newVersion;
+      this.getPersons();
     });
 
-    this.getPersons();
+    
   }
 
 

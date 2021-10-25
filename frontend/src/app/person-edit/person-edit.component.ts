@@ -1,9 +1,10 @@
 import { PersonService } from './../person.service';
 import { Person } from './../person';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StateService } from '../state.service';
+
 
 @Component({
   selector: 'app-person-edit',
@@ -25,36 +26,50 @@ export class PersonEditComponent implements OnInit {
     private stateService: StateService
   ) { }
 
+  get firstname() { return this.personForm.get('firstname')!; }
+  get lastname() { return this.personForm.get('lastname')!; }
+  get height() { return this.personForm.get('height')!; }
+  get weight() { return this.personForm.get('weight')!; }
+  get birthdate() { return this.personForm.get('birthdate')!; }
+
   ngOnInit(): void {
 
     this.stateService.version.subscribe(newVersion => {
       this.version = newVersion;
-    });
-    this.personForm = new FormGroup({
-      firstname: new FormControl('', [Validators.required]),
-      lastname: new FormControl('', [Validators.required]),
-      minor: new FormControl(''),
-      address1: new FormControl(''),
-      address2: new FormControl(''),
-      height: new FormControl(0, [Validators.min(0)]),
-      weight: new FormControl(0),
-      birthdate: new FormControl(new Date())
-    });
 
-    this.personId = this.route.snapshot.params.id;
-    if(this.personId) {
-      this.editMode = true;
-      this.personService.getPerson(this.personId).subscribe(p => {
-        console.log(p);
-        this.fillform(p);
-      });
-    }
+      if(this.version === 1) {
+        this.personForm = new FormGroup({
+          firstname: new FormControl('', [Validators.required]),
+          lastname: new FormControl('', [Validators.required]),
+          minor: new FormControl(''),
+          address1: new FormControl(''),
+          address2: new FormControl(''),
+          height: new FormControl(0, [Validators.min(0)]),
+          weight: new FormControl(0),
+          birthdate: new FormControl(new Date())
+        });
+      } else if(this.version === 2) {
+        this.personForm = new FormGroup({
+          firstname: new FormControl('', [Validators.required]),
+          lastname: new FormControl('', [Validators.required]),
+          minor: new FormControl(''),
+          address1: new FormControl(''),
+          address2: new FormControl(''),
+          height: new FormControl(0, [Validators.min(0)]),
+          weight: new FormControl(0, [Validators.min(0)]),
+          birthdate: new FormControl(new Date())
+        });
+      }
 
+      this.personId = this.route.snapshot.params.id;
+      if(this.personId) {
+        this.editMode = true;
+        this.personService.getPerson(this.personId).subscribe(p => {
+          this.fillform(p);
+        });
+      }
+    });
   }
-
-  get firstname() { return this.personForm.get('firstname')!; }
-  get lastname() { return this.personForm.get('lastname')!; }
-  get height() { return this.personForm.get('height')!; }
 
   onSubmit() {
 
@@ -62,15 +77,11 @@ export class PersonEditComponent implements OnInit {
     if(this.editMode) {
       p.id = this.personId;
       this.personService.updatePerson(p).subscribe((): void => {
-        console.log(`Updated person`);
-        console.log(p);
         this.router.navigate(['person-list/']);
       });
     } else {
       this.personService.addPerson(p)
        .subscribe((): void => {
-         console.log(`Saved person`);
-         console.log(p);
          this.router.navigate(['person-list/']);
      });
     }
@@ -89,5 +100,4 @@ export class PersonEditComponent implements OnInit {
       birthdate: person.birthdate
     })
   }
-
 }
