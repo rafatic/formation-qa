@@ -1,8 +1,9 @@
 import { PersonService } from './../person.service';
 import { Person } from './../person';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-person-edit',
@@ -14,14 +15,21 @@ export class PersonEditComponent implements OnInit {
   personForm!: FormGroup;
   editMode: Boolean = false;
   personId?: number;
+  version: number | undefined;
+  
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private personService: PersonService
+    private personService: PersonService,
+    private stateService: StateService
   ) { }
 
   ngOnInit(): void {
+
+    this.stateService.version.subscribe(newVersion => {
+      this.version = newVersion;
+    });
     this.personForm = new FormGroup({
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),

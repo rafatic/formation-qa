@@ -84,7 +84,8 @@
       <mat-grid-tile></mat-grid-tile>
 
     </mat-grid-list>
-    <!-- <button mat-raised-button color="primary" id="misplacedSubmitButton" type="submit" [disabled]="!personForm.valid">Enregistrer</button> -->
-    <button mat-raised-button color="primary" id="misplacedSubmitButton" type="submit">Enregistrer</button>
+    
+    <button *ngIf="this.version===2" mat-raised-button color="primary" id="misplacedSubmitButton" type="submit" [disabled]="!personForm.valid">Enregistrer</button>
+    <button *ngIf="this.version===1" mat-raised-button color="primary" id="misplacedSubmitButton" type="submit">Enregistrer</button>
   </mat-card>
 </form>

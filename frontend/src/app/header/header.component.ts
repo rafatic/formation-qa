@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  selectedVersion : string = "V 1.0";
-
-  constructor() { }
+  selectedVersionString : string = 'V 1.0';
+  
+  constructor(private stateService: StateService) { }
 
   ngOnInit(): void {
   }
 
-  changeVersion(version: String) {
+  changeVersion(version: number) {
     console.log('changed version to : ', version);
+    version === 1 ? this.selectedVersionString = 'V 1.0' : this.selectedVersionString = 'V 2.0';
+    this.stateService.changeVersion(version);
   }
 
 }

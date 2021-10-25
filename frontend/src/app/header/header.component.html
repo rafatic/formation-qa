@@ -3,10 +3,10 @@
   <button mat-button routerLink="/person-list">Liste de personnes</button>
   <button mat-button routerLink="/person-edit">Créer une personne</button>
   <div class="spacer"></div>
-  <button mat-button [matMenuTriggerFor]="versionMenu">{{selectedVersion}}
+  <button mat-button [matMenuTriggerFor]="versionMenu">{{selectedVersionString}}
     <mat-menu #versionMenu="matMenu">
-      <button mat-menu-item>V 1.0</button>
-      <button mat-menu-item>V 2.0</button>
+      <button mat-menu-item (click)="changeVersion(1)">V 1.0</button>
+      <button mat-menu-item (click)="changeVersion(2)">V 2.0</button>
     </mat-menu>
   </button>
 </mat-toolbar>
