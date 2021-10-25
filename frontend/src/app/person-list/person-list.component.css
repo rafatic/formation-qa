@@ -2,6 +2,16 @@
   width: 100%;
 }
 
+.table-wrapper-hidden-overflow {
+  max-height:515px;
+  overflow: hidden;
+}
+
+.table-wrapper-scroll-overflow {
+  max-height:70%;
+  overflow-y: scroll;
+}
+
 .mat-row .mat-cell {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
