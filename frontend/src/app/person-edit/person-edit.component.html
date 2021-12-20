@@ -61,6 +61,9 @@
             <div *ngIf="height.errors?.min">
               La taille doit être supérieure à zéro
             </div>
+            <div *ngIf="height.errors?.invalidType">
+              La taille doit être un nombre
+            </div>
           </mat-error>
         </mat-form-field>
       </mat-grid-tile>
@@ -73,6 +76,9 @@
           <mat-error *ngIf="weight.invalid && (weight.dirty || weight.touched)">
             <div *ngIf="weight.errors?.min">
               La poids doit être supérieur à zéro
+            </div>
+            <div *ngIf="weight.errors?.invalidType">
+              Le poids doit être un nombre
             </div>
           </mat-error>
         </mat-form-field>
@@ -93,8 +99,8 @@
         <button *ngIf="this.version===2" mat-raised-button color="primary" type="submit" [disabled]="!personForm.valid">Enregistrer</button>
       </mat-grid-tile>
     </mat-grid-list>
-    
-    
+
+
     <button *ngIf="this.version===1" mat-raised-button color="primary" id="misplacedSubmitButton" type="submit">Enregistrer</button>
   </mat-card>
 </form>

@@ -1,7 +1,7 @@
 import { PersonService } from './../person.service';
 import { Person } from './../person';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StateService } from '../state.service';
 
@@ -17,7 +17,7 @@ export class PersonEditComponent implements OnInit {
   editMode: Boolean = false;
   personId?: number;
   version: number | undefined;
-  
+
 
   constructor(
     private route: ActivatedRoute,
@@ -55,8 +55,8 @@ export class PersonEditComponent implements OnInit {
           minor: new FormControl(''),
           address1: new FormControl(''),
           address2: new FormControl(''),
-          height: new FormControl(0, [Validators.min(0)]),
-          weight: new FormControl(0, [Validators.min(0)]),
+          height: new FormControl(0, [Validators.min(0), this.integerValidator()]),
+          weight: new FormControl(0, [Validators.min(0), this.integerValidator()]),
           birthdate: new FormControl(new Date())
         });
       }
@@ -99,5 +99,12 @@ export class PersonEditComponent implements OnInit {
       weight: person.weight,
       birthdate: person.birthdate
     })
+  }
+
+  integerValidator(): ValidatorFn {
+
+    return (control: AbstractControl): ValidationErrors | null => {
+      return typeof control.value !== "number" ? {invalidType: {value: control.value}} : null;
+    };
   }
 }
