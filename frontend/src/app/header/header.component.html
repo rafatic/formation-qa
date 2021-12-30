@@ -3,6 +3,7 @@
   <button mat-button routerLink="/person-list">Liste de personnes</button>
   <button mat-button routerLink="/person-edit">Créer une personne</button>
   <div class="spacer"></div>
+  <button mat-button routerLink="/specifications">Spécifications</button>
   <button mat-button [matMenuTriggerFor]="versionMenu">{{selectedVersionString}}
     <mat-menu #versionMenu="matMenu">
       <button mat-menu-item (click)="changeVersion(1)">V 1.0</button>

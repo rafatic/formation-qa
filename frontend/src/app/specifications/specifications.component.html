@@ -1,0 +1,70 @@
+<h1>Spécifications fonctionnelles <b>V1.0</b></h1>
+
+<h2>Général</h2>
+
+L'application doit être utilisable et s'afficher correctement sur l'interval de résolutions suivant :
+<br>
+<i>min : 800x600</i>
+<br>
+<i>max : 3440x1440 (ultrawide)</i>
+<br>
+
+<h2>Saisie d'une personne</h2>
+
+
+
+Le système doit permettre de créer et sauvegarder des personnes.<br>
+Une personne est identifiée par un identifiant technique (sequence) et dispose des champs suivants :<br>
+
+<ul>
+  <li><b>Nom : </b>Nom de le personne, obligatoire</li>
+  <li><b>Prénom : </b>prénom de la personne, obligatoire</li>
+  <li><b>Selecteur mineur / majeur : </b>Permet de définir si la personne saisie est mineure ou majeure</li>
+  <li><b>Adresses : </b>divisé en deux lignes</li>
+  <li><b>Taille : </b>exprimée en centimètres</li>
+  <li><b>Poids : </b>éxprimé en kilogrammes</li>
+  <li><b>Date de naissace  : </b>format date français (jj/MM/AAAA)</li>
+</ul>
+
+Le formulaire de saisie de personne ne peut pas être validé si les champs marqués "obligatoire" ne sont pas remplis.
+
+<br>
+<br>
+
+<h2>Liste des personnes</h2>
+
+<b>Spécification manquante</b>
+
+<div id="spec-v-2" *ngIf="this.version === 2">
+  <br>
+  <br>
+  <hr>
+  <br>
+
+  <h1>Version 2.0 : avenants à la spécification V1.0</h1>
+
+  <h2>Général</h2>
+
+  L'ensemble des libellés et textes de l'application doivent être en français.
+
+  <h2>Saisie d'une personne</h2>
+
+  <ul>
+    <li><b>Taille : </b> la taille doit être exprimée par un entier positif</li>
+    <li><b>Poids : </b> le poids doit être exprimée par un entier positif</li>
+  </ul>
+
+
+
+
+  <h2>Liste des personnes</h2>
+
+
+  Le tableau de personnes doit être capable d'afficher n'importe quel nombre de personnes.
+  <br>Une barre de défilement doit apparaitre lorsque le nombre de personnes devient trop grand
+  <br>
+  <br>
+  Les unités de mesure utilisées pour le poids et la taille d'une personne doivent apparaitre dans la liste.
+  <br>
+  <br>
+</div>
